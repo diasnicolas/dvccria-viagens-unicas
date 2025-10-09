@@ -59,10 +59,10 @@ const Navbar = () => {
               Diferenciais
             </button>
             <button
-              onClick={() => scrollToSection("destinations")}
+              onClick={() => scrollToSection("services")}
               className="font-poppins text-foreground hover:text-primary transition-colors"
             >
-              Destinos
+              Serviços
             </button>
             <button
               onClick={() => scrollToSection("contact")}
@@ -113,10 +113,10 @@ const Navbar = () => {
                 Diferenciais
               </button>
               <button
-                onClick={() => scrollToSection("destinations")}
+                onClick={() => scrollToSection("services")}
                 className="block w-full text-left font-poppins text-foreground hover:text-primary transition-colors py-2"
               >
-                Destinos
+                Serviços
               </button>
               <button
                 onClick={() => scrollToSection("contact")}
