@@ -88,13 +88,30 @@ const Footer = () => {
         </div>
 
         <div className="border-t border-border pt-8">
-          <div className="flex flex-col md:flex-row justify-between items-center text-sm text-muted-foreground font-poppins">
-            <p>
-              © {currentYear} DV&C Turismo e Viagens. Todos os direitos reservados.
-            </p>
-            <p className="mt-2 md:mt-0">
-              CNPJ: 62.366.775/0001-32 | Cadastur Cadastrada
-            </p>
+          <div className="flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-muted-foreground font-poppins">
+            <div className="flex flex-col md:flex-row items-center gap-4">
+              <p>
+                © {currentYear} DV&C Turismo e Viagens. Todos os direitos reservados.
+              </p>
+              <p className="flex items-center gap-2">
+                CNPJ: 62.366.775/0001-32
+              </p>
+            </div>
+            <div className="flex items-center gap-6">
+              <img 
+                src="/cadastur-logo.png" 
+                alt="Cadastur - Ministério do Turismo" 
+                className="h-8 object-contain"
+              />
+              <a 
+                href="https://zapturize.com.br" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="hover:text-primary transition-colors"
+              >
+                Desenvolvido por ZapTurize
+              </a>
+            </div>
           </div>
         </div>
       </div>

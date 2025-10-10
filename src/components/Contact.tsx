@@ -1,30 +1,8 @@
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
 import { Phone, Mail, MapPin, Instagram, MessageCircle } from "lucide-react";
-import { useState } from "react";
-import { toast } from "sonner";
 
 const Contact = () => {
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    phone: "",
-    message: "",
-  });
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    
-    const whatsappMessage = `Olá! Meu nome é ${formData.name}.%0A%0AEmail: ${formData.email}%0ATelefone: ${formData.phone}%0A%0AMensagem: ${formData.message}`;
-    
-    window.open(`https://wa.me/5564992722036?text=${whatsappMessage}`, "_blank");
-    
-    toast.success("Redirecionando para o WhatsApp!");
-    
-    setFormData({ name: "", email: "", phone: "", message: "" });
-  };
 
   return (
     <section id="contact" className="py-20 bg-background">
@@ -47,12 +25,12 @@ const Contact = () => {
                 </div>
                 <div>
                   <h3 className="font-playfair font-semibold text-lg mb-2">Telefones</h3>
-                  <p className="text-muted-foreground font-poppins mb-1">
+                  <a href="tel:+5564992722036" className="block text-muted-foreground hover:text-primary font-poppins mb-1 transition-colors">
                     Agência: (64) 99272-2036
-                  </p>
-                  <p className="text-muted-foreground font-poppins">
+                  </a>
+                  <a href="tel:+5564992190591" className="block text-muted-foreground hover:text-primary font-poppins transition-colors">
                     Danyele: (64) 99219-0591
-                  </p>
+                  </a>
                 </div>
               </div>
             </Card>
@@ -123,77 +101,26 @@ const Contact = () => {
             </Card>
           </div>
 
-          <Card className="p-8 animate-fade-in">
-            <h3 className="text-2xl font-playfair font-semibold mb-6">
-              Solicite seu Orçamento
-            </h3>
-            <form onSubmit={handleSubmit} className="space-y-6">
-              <div>
-                <label className="block text-sm font-poppins font-medium mb-2">
-                  Nome Completo
-                </label>
-                <Input
-                  type="text"
-                  placeholder="Seu nome"
-                  value={formData.name}
-                  onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                  required
-                  className="font-poppins"
-                />
+          <div className="flex items-center justify-center animate-fade-in">
+            <Card className="p-8 w-full">
+              <div className="text-center space-y-4">
+                <h3 className="text-2xl font-playfair font-semibold">
+                  Solicite seu Orçamento
+                </h3>
+                <p className="text-muted-foreground font-poppins">
+                  Entre em contato conosco via WhatsApp e receba um orçamento personalizado para a viagem dos seus sonhos!
+                </p>
+                <Button
+                  size="lg"
+                  onClick={() => window.open('https://wa.me/5564992722036?text=Olá! Gostaria de solicitar um orçamento.', '_blank')}
+                  className="w-full bg-gradient-to-r from-primary to-primary-glow hover:opacity-90 font-poppins"
+                >
+                  <MessageCircle className="mr-2 w-5 h-5" />
+                  Solicitar Orçamento via WhatsApp
+                </Button>
               </div>
-
-              <div>
-                <label className="block text-sm font-poppins font-medium mb-2">
-                  E-mail
-                </label>
-                <Input
-                  type="email"
-                  placeholder="seu@email.com"
-                  value={formData.email}
-                  onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                  required
-                  className="font-poppins"
-                />
-              </div>
-
-              <div>
-                <label className="block text-sm font-poppins font-medium mb-2">
-                  Telefone/WhatsApp
-                </label>
-                <Input
-                  type="tel"
-                  placeholder="(00) 00000-0000"
-                  value={formData.phone}
-                  onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                  required
-                  className="font-poppins"
-                />
-              </div>
-
-              <div>
-                <label className="block text-sm font-poppins font-medium mb-2">
-                  Conte-nos sobre sua viagem dos sonhos
-                </label>
-                <Textarea
-                  placeholder="Destino, datas, número de pessoas, preferências..."
-                  rows={5}
-                  value={formData.message}
-                  onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                  required
-                  className="font-poppins"
-                />
-              </div>
-
-              <Button
-                type="submit"
-                size="lg"
-                className="w-full bg-gradient-to-r from-primary to-primary-glow hover:opacity-90 font-poppins"
-              >
-                <MessageCircle className="mr-2 w-5 h-5" />
-                Enviar via WhatsApp
-              </Button>
-            </form>
-          </Card>
+            </Card>
+          </div>
         </div>
       </div>
     </section>
