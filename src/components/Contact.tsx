@@ -16,8 +16,8 @@ const Contact = () => {
           </p>
         </div>
 
-        <div className="grid lg:grid-cols-2 gap-12 max-w-6xl mx-auto">
-          <div className="space-y-6 animate-fade-in">
+        <div className="max-w-6xl mx-auto space-y-8">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 animate-fade-in">
             <Card className="p-6 hover:shadow-lg transition-shadow">
               <div className="flex items-start space-x-4">
                 <div className="w-12 h-12 bg-gradient-to-br from-primary to-primary-glow rounded-lg flex items-center justify-center flex-shrink-0">
@@ -44,7 +44,7 @@ const Contact = () => {
                   <h3 className="font-playfair font-semibold text-lg mb-2">E-mail</h3>
                   <a
                     href="mailto:contato@dvecturismoeviagens.com.br"
-                    className="text-primary hover:underline font-poppins"
+                    className="text-primary hover:underline font-poppins break-all"
                   >
                     contato@dvecturismoeviagens.com.br
                   </a>
@@ -81,15 +81,16 @@ const Contact = () => {
                     href="https://www.instagram.com/dvecturismo_e_viagens"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-primary hover:underline font-poppins flex items-center"
+                    className="text-primary hover:underline font-poppins flex items-center gap-2"
                   >
+                    <Instagram className="w-4 h-4" />
                     @dvecturismo_e_viagens
                   </a>
                 </div>
               </div>
             </Card>
 
-            <Card className="p-6 bg-gradient-to-br from-primary/5 to-accent/5 border-primary/20">
+            <Card className="p-6 bg-gradient-to-br from-primary/5 to-accent/5 border-primary/20 md:col-span-2">
               <div className="flex items-center space-x-3 mb-3">
                 <MessageCircle className="w-6 h-6 text-primary" />
                 <h3 className="font-playfair font-semibold text-lg">Informações Legais</h3>
@@ -102,7 +103,7 @@ const Contact = () => {
           </div>
 
           <div className="flex items-center justify-center animate-fade-in">
-            <Card className="p-8 w-full">
+            <Card className="p-8 max-w-2xl w-full">
               <div className="text-center space-y-4">
                 <h3 className="text-2xl font-playfair font-semibold">
                   Solicite seu Orçamento
