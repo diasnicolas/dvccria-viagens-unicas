@@ -9,7 +9,7 @@ import Footer from "@/components/Footer";
 
 const Index = () => {
   return (
-    <div className="min-h-screen font-poppins">
+    <div className="min-h-screen font-poppins overflow-x-hidden">
       <Navbar />
       <Hero />
       <About />

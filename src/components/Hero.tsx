@@ -64,7 +64,7 @@ const Hero = () => {
           </Button>
         </div>
 
-        <div className="mt-12 flex flex-wrap justify-center gap-8 text-sm font-poppins">
+        <div className="mt-12 flex flex-wrap justify-center gap-4 md:gap-8 text-sm font-poppins px-4">
           <div className="flex items-center space-x-2">
             <div className="w-3 h-3 rounded-full bg-accent animate-pulse" />
             <span>Atendimento Personalizado</span>
