@@ -12,12 +12,12 @@ const TravelWidget = () => {
         </div>
 
         <div className="max-w-5xl mx-auto bg-card rounded-lg shadow-lg p-8 animate-fade-in">
-          {/* Aqui será inserido o widget da OpenTravel */}
-          <div className="min-h-[400px] flex items-center justify-center border-2 border-dashed border-border rounded-lg">
-            <p className="text-muted-foreground font-poppins text-center">
-              Widget da OpenTravel será inserido aqui
-            </p>
-          </div>
+          <div id="wrapper">
+  <befly-widget language="pt-br" new-tab="true">
+  </befly-widget>
+</div>
+<script type="text/javascript" src="https://static.onertravel.com/widget/search/production/widget-befly.js">
+</script>
         </div>
       </div>
     </section>
