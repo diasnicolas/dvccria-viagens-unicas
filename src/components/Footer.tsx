@@ -8,15 +8,15 @@ const Footer = () => {
       <div className="container mx-auto px-4 py-12">
         <div className="grid md:grid-cols-3 gap-8 mb-8">
           <div>
-            <div className="text-2xl font-playfair font-bold bg-gradient-to-r from-primary to-primary-glow bg-clip-text text-transparent mb-4">
+            <div className="text-2xl font-playfair font-bold bg-gradient-to-r from-primary to-primary bg-clip-text text-transparent mb-4">
               DV&C Turismo e Viagens
             </div>
             <p className="text-muted-foreground font-poppins mb-4">
-              Transformando sonhos em memórias inesquecíveis desde o primeiro dia.
+              Transformando sonhos em memórias inesquecíveis.
             </p>
             <div className="flex items-center space-x-2 text-sm text-muted-foreground">
               <Heart className="w-4 h-4 text-accent" />
-              <span className="font-poppins">Feito com paixão por viagens</span>
+              <span className="font-poppins">Você vai amar essa experiência</span>
             </div>
           </div>
 

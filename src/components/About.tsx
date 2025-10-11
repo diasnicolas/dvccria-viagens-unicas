@@ -7,6 +7,10 @@ import {
   CarouselPrevious,
 } from "@/components/ui/carousel";
 import { Heart, Globe, Award } from "lucide-react";
+import about1 from "@/assets/about_1.jpeg";
+import about2 from "@/assets/about_2.jpeg";
+import about3 from "@/assets/about_3.jpeg";
+import about4 from "@/assets/about_4.jpeg";
 
 const About = () => {
   return (
@@ -81,25 +85,39 @@ const About = () => {
                 Conheça nossa Fundadora
               </h3>
               <Carousel className="w-full max-w-md mx-auto">
-                <CarouselContent>
-                  <CarouselItem>
-                    <div className="aspect-[3/4] bg-gradient-to-br from-primary/20 to-accent/20 rounded-lg flex items-center justify-center">
-                      <p className="text-muted-foreground font-poppins text-center px-8">
-                        Adicione uma foto em formato retrato aqui
-                      </p>
-                    </div>
-                  </CarouselItem>
-                  <CarouselItem>
-                    <div className="aspect-[3/4] bg-gradient-to-br from-secondary/20 to-primary/20 rounded-lg flex items-center justify-center">
-                      <p className="text-muted-foreground font-poppins text-center px-8">
-                        Adicione outra foto em formato retrato aqui
-                      </p>
-                    </div>
-                  </CarouselItem>
-                </CarouselContent>
-                <CarouselPrevious className="left-2" />
-                <CarouselNext className="right-2" />
-              </Carousel>
+    <CarouselContent>
+      <CarouselItem>
+                    <img
+                      src={about1}
+          alt="Fundadora - Foto 1"
+          className="aspect-[3/4] w-full object-cover rounded-lg"
+        />
+      </CarouselItem>
+      <CarouselItem>
+        <img 
+          src={about2}
+          alt="Fundadora - Foto 2"
+          className="aspect-[3/4] w-full object-cover rounded-lg"
+        />
+      </CarouselItem>
+      <CarouselItem>
+        <img 
+           src={about3}
+          alt="Fundadora - Foto 3"
+          className="aspect-[3/4] w-full object-cover rounded-lg"
+        />
+      </CarouselItem>
+      <CarouselItem>
+        <img 
+           src={about4}
+          alt="Fundadora - Foto 4"
+          className="aspect-[3/4] w-full object-cover rounded-lg"
+        />
+      </CarouselItem>
+    </CarouselContent>
+    <CarouselPrevious className="left-2" />
+    <CarouselNext className="right-2" />
+  </Carousel>
               <div className="mt-6 text-center">
                 <div className="flex items-center justify-center space-x-2 text-sm font-poppins text-muted-foreground">
                   <Globe className="w-4 h-4" />

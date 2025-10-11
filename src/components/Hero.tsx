@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Plane } from "lucide-react";
 import heroImage from "@/assets/hero-beach.jpg";
+import { useIrParaWhatsApp } from "@/hooks/useIrParaWhatsApp";
 
 const Hero = () => {
   const scrollToContact = () => {
@@ -9,6 +10,8 @@ const Hero = () => {
       element.scrollIntoView({ behavior: "smooth" });
     }
   };
+
+  const irParaWhatsApp = useIrParaWhatsApp();
 
   return (
     <section
@@ -58,7 +61,7 @@ const Hero = () => {
             size="lg"
             variant="outline"
             className="border-2 border-white bg-white/10 backdrop-blur-md text-white hover:bg-white hover:text-foreground font-poppins text-lg px-8 py-6"
-            onClick={() => window.open("https://wa.me/5564992722036", "_blank")}
+            onClick={() => irParaWhatsApp("falenowhatsapp")}
           >
             Fale no WhatsApp
           </Button>
@@ -77,12 +80,6 @@ const Hero = () => {
             <div className="w-3 h-3 rounded-full bg-primary-glow animate-pulse" />
             <span>Suporte Completo</span>
           </div>
-        </div>
-      </div>
-
-      <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
-        <div className="w-6 h-10 border-2 border-white rounded-full flex items-start justify-center p-2">
-          <div className="w-1 h-2 bg-white rounded-full" />
         </div>
       </div>
     </section>

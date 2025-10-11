@@ -1,9 +1,14 @@
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Phone, Mail, MapPin, Instagram, MessageCircle } from "lucide-react";
+import { useIrParaWhatsApp } from "@/hooks/useIrParaWhatsApp";
+
+
 
 const Contact = () => {
 
+  const irParaWhatsApp = useIrParaWhatsApp();
+  
   return (
     <section id="contact" className="py-20 bg-background">
       <div className="container mx-auto px-4">
@@ -113,7 +118,7 @@ const Contact = () => {
                 </p>
                 <Button
                   size="lg"
-                  onClick={() => window.open('https://wa.me/5564992722036?text=Olá! Gostaria de solicitar um orçamento.', '_blank')}
+                  onClick={() => irParaWhatsApp("solicitarorcamento")}
                   className="w-full bg-gradient-to-r from-primary to-primary-glow hover:opacity-90 font-poppins"
                 >
                   <MessageCircle className="mr-2 w-5 h-5" />
