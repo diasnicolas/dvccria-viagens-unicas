@@ -14,6 +14,13 @@ declare global {
 
 const TravelWidget = () => {
   useEffect(() => {
+    // Load widget CSS
+    const link = document.createElement('link');
+    link.rel = 'stylesheet';
+    link.href = 'https://static.onertravel.com/widget/search/production/styles.css';
+    document.head.appendChild(link);
+
+    // Load widget script
     const script = document.createElement('script');
     script.src = 'https://static.onertravel.com/widget/search/production/widget-befly.js';
     script.type = 'text/javascript';
@@ -21,6 +28,9 @@ const TravelWidget = () => {
     document.body.appendChild(script);
 
     return () => {
+      if (document.head.contains(link)) {
+        document.head.removeChild(link);
+      }
       if (document.body.contains(script)) {
         document.body.removeChild(script);
       }
@@ -40,7 +50,7 @@ const TravelWidget = () => {
         </div>
 
         <div className="max-w-5xl mx-auto bg-card rounded-lg shadow-lg p-8 animate-fade-in">
-          <div id="wrapper">
+          <div id="wrapper" className="[&_*]:!text-inherit">
             <befly-widget language="pt-br" new-tab="true"></befly-widget>
           </div>
         </div>
