@@ -20,19 +20,19 @@ const TravelWidget = () => {
     //document.head.appendChild(link);
 
     // Load widget script
-    const script = document.createElement('script');
-    script.src = 'https://static.onertravel.com/widget/search/production/widget-befly.js';
-    script.type = 'text/javascript';
-    script.async = true;
-    document.body.appendChild(script);
+    //const script = document.createElement('script');
+    //script.src = 'https://static.onertravel.com/widget/search/production/widget-befly.js';
+    //script.type = 'text/javascript';
+    //script.async = true;
+    //document.body.appendChild(script);
 
     return () => {
       //if (document.head.contains(link)) {
       //  document.head.removeChild(link);
       //}
-      if (document.body.contains(script)) {
-        document.body.removeChild(script);
-      }
+      //if (document.body.contains(script)) {
+      //  document.body.removeChild(script);
+      //}
     };
   }, []);
 
