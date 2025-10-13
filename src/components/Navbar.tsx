@@ -35,14 +35,10 @@ const irParaWhatsApp = useIrParaWhatsApp();
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-20">
           <div className="flex items-center space-x-2">
-<<<<<<< HEAD
-            <div className="text-2xl font-playfair font-bold bg-gradient-to-r from-primary to-primary bg-clip-text">
-=======
-            <div className="text-2xl font-playfair font-bold !text-primary" style={{ color: 'hsl(var(--primary))' }}>
->>>>>>> 243d8a6563448478b59ee48e92484a163a85624a
+            <div className="text-2xl font-playfair font-bold bg-gradient-to-r from-primary to-primary bg-clip-text text-transparent">
               DV&C
             </div>
-            <div className="hidden sm:block text-sm font-poppins !text-muted-foreground" style={{ color: 'hsl(var(--muted-foreground))' }}>
+            <div className="hidden sm:block text-sm font-poppins text-muted-foreground">
               Turismo e Viagens
             </div>
           </div>
@@ -50,31 +46,31 @@ const irParaWhatsApp = useIrParaWhatsApp();
           <div className="hidden md:flex items-center space-x-8">
             <button
               onClick={() => scrollToSection("home")}
-              className="font-poppins !text-foreground hover:!text-primary transition-colors"
+              className="font-poppins text-foreground hover:text-primary transition-colors"
             >
               Início
             </button>
             <button
               onClick={() => scrollToSection("about")}
-              className="font-poppins !text-foreground hover:!text-primary transition-colors"
+              className="font-poppins text-foreground hover:text-primary transition-colors"
             >
               Sobre
             </button>
             <button
               onClick={() => scrollToSection("differentials")}
-              className="font-poppins !text-foreground hover:!text-primary transition-colors"
+              className="font-poppins text-foreground hover:text-primary transition-colors"
             >
               Diferenciais
             </button>
             <button
               onClick={() => scrollToSection("services")}
-              className="font-poppins !text-foreground hover:!text-primary transition-colors"
+              className="font-poppins text-foreground hover:text-primary transition-colors"
             >
               Serviços
             </button>
             <button
               onClick={() => scrollToSection("contact")}
-              className="font-poppins !text-foreground hover:!text-primary transition-colors"
+              className="font-poppins text-foreground hover:text-primary transition-colors"
             >
               Contato
             </button>
@@ -83,7 +79,7 @@ const irParaWhatsApp = useIrParaWhatsApp();
           <div className="hidden md:flex items-center space-x-4">
             <Button
               size="sm"
-              className="!bg-gradient-to-r !from-primary !to-primary-glow hover:opacity-90"
+              className="bg-gradient-to-r from-primary to-primary-glow hover:opacity-90"
               onClick={() => irParaWhatsApp("faleconosco")}
             >
               <Phone className="w-4 h-4 mr-2" />

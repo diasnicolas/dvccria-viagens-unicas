@@ -15,10 +15,10 @@ declare global {
 const TravelWidget = () => {
   useEffect(() => {
     // Load widget CSS
-    const link = document.createElement('link');
-    link.rel = 'stylesheet';
-    link.href = 'https://static.onertravel.com/widget/search/production/styles.css';
-    document.head.appendChild(link);
+    //const link = document.createElement('link');
+    //link.rel = 'stylesheet';
+    //link.href = 'https://static.onertravel.com/widget/search/production/styles.css';
+    //document.head.appendChild(link);
 
     // Load widget script
     const script = document.createElement('script');
