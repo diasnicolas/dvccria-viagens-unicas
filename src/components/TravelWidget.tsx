@@ -1,4 +1,31 @@
+import { useEffect } from 'react';
+
+declare global {
+  namespace JSX {
+    interface IntrinsicElements {
+      'befly-widget': React.DetailedHTMLProps<React.HTMLAttributes<HTMLElement>, HTMLElement> & {
+        language?: string;
+        'new-tab'?: string;
+      };
+    }
+  }
+}
+
 const TravelWidget = () => {
+  useEffect(() => {
+    const script = document.createElement('script');
+    script.src = 'https://static.onertravel.com/widget/search/production/widget-befly.js';
+    script.type = 'text/javascript';
+    script.async = true;
+    document.body.appendChild(script);
+
+    return () => {
+      if (document.body.contains(script)) {
+        document.body.removeChild(script);
+      }
+    };
+  }, []);
+
   return (
     <section id="travel-widget" className="py-20 bg-foreground/5">
       <div className="container mx-auto px-4">
@@ -13,11 +40,8 @@ const TravelWidget = () => {
 
         <div className="max-w-5xl mx-auto bg-card rounded-lg shadow-lg p-8 animate-fade-in">
           <div id="wrapper">
-  <befly-widget language="pt-br" new-tab="true">
-  </befly-widget>
-</div>
-<script type="text/javascript" src="https://static.onertravel.com/widget/search/production/widget-befly.js">
-</script>
+            <befly-widget language="pt-br" new-tab="true"></befly-widget>
+          </div>
         </div>
       </div>
     </section>
