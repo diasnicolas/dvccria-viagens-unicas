@@ -1,7 +1,6 @@
 import { useEffect } from 'react';
 
 declare global {
-  // eslint-disable-next-line @typescript-eslint/no-namespace
   namespace JSX {
     interface IntrinsicElements {
       'befly-widget': React.DetailedHTMLProps<React.HTMLAttributes<HTMLElement>, HTMLElement> & {
@@ -28,9 +27,9 @@ const TravelWidget = () => {
     document.body.appendChild(script);
 
     return () => {
-      if (document.head.contains(link)) {
-        document.head.removeChild(link);
-      }
+      //if (document.head.contains(link)) {
+      //  document.head.removeChild(link);
+      //}
       if (document.body.contains(script)) {
         document.body.removeChild(script);
       }
