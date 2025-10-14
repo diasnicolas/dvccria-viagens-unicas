@@ -1,6 +1,7 @@
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 
 declare global {
+  // eslint-disable-next-line @typescript-eslint/no-namespace
   namespace JSX {
     interface IntrinsicElements {
       'befly-widget': React.DetailedHTMLProps<React.HTMLAttributes<HTMLElement>, HTMLElement> & {
@@ -12,27 +13,63 @@ declare global {
 }
 
 const TravelWidget = () => {
-  useEffect(() => {
-    // Load widget CSS
-    //const link = document.createElement('link');
-    //link.rel = 'stylesheet';
-    //link.href = 'https://static.onertravel.com/widget/search/production/styles.css';
-    //document.head.appendChild(link);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const shadowRef = useRef<ShadowRoot | null>(null);
 
-    // Load widget script
-    //const script = document.createElement('script');
-    //script.src = 'https://static.onertravel.com/widget/search/production/widget-befly.js';
-    //script.type = 'text/javascript';
-    //script.async = true;
-    //document.body.appendChild(script);
+  useEffect(() => {
+    if (!containerRef.current) return;
+
+    // Criar Shadow DOM
+    if (!containerRef.current.shadowRoot) {
+      shadowRef.current = containerRef.current.attachShadow({ mode: 'open' });
+    } else {
+      shadowRef.current = containerRef.current.shadowRoot;
+    }
+
+    // Criar container para o widget dentro do Shadow DOM
+    const widgetContainer = document.createElement('div');
+    widgetContainer.id = 'wrapper';
+    widgetContainer.className = '[&_*]:!text-inherit';
+    
+    // Adicionar CSS isolado ao Shadow DOM
+    const style = document.createElement('style');
+    style.textContent = `
+      :host {
+        all: initial;
+        display: block;
+      }
+      
+      #wrapper {
+        all: revert;
+      }
+    `;
+    
+    shadowRef.current.appendChild(style);
+    shadowRef.current.appendChild(widgetContainer);
+
+    // Criar elemento befly-widget dentro do Shadow DOM
+    const berflyWidget = document.createElement('befly-widget');
+    berflyWidget.setAttribute('language', 'pt-br');
+    berflyWidget.setAttribute('new-tab', 'true');
+    widgetContainer.appendChild(berflyWidget);
+
+    // Carregar CSS do widget no Shadow DOM
+    const link = document.createElement('link');
+    link.rel = 'stylesheet';
+    link.href = 'https://static.onertravel.com/widget/search/production/styles.css';
+    shadowRef.current.insertBefore(link, shadowRef.current.firstChild);
+
+    // Carregar script do widget
+    const script = document.createElement('script');
+    script.src = 'https://static.onertravel.com/widget/search/production/widget-befly.js';
+    script.type = 'text/javascript';
+    script.async = true;
+    document.body.appendChild(script);
 
     return () => {
-      //if (document.head.contains(link)) {
-      //  document.head.removeChild(link);
-      //}
-      //if (document.body.contains(script)) {
-      //  document.body.removeChild(script);
-      //}
+      if (document.body.contains(script)) {
+        document.body.removeChild(script);
+      }
     };
   }, []);
 
@@ -49,9 +86,7 @@ const TravelWidget = () => {
         </div>
 
         <div className="max-w-5xl mx-auto bg-card rounded-lg shadow-lg p-8 animate-fade-in">
-          <div id="wrapper" className="[&_*]:!text-inherit">
-            <befly-widget language="pt-br" new-tab="true"></befly-widget>
-          </div>
+          <div ref={containerRef} className="widget-shadow-container" />
         </div>
       </div>
     </section>
