@@ -14,24 +14,14 @@ declare global {
 
 const TravelWidget = () => {
   const containerRef = useRef<HTMLDivElement>(null);
-  const shadowRef = useRef<ShadowRoot | null>(null);
 
   useEffect(() => {
     if (!containerRef.current) return;
 
     // Criar Shadow DOM
-    if (!containerRef.current.shadowRoot) {
-      shadowRef.current = containerRef.current.attachShadow({ mode: 'open' });
-    } else {
-      shadowRef.current = containerRef.current.shadowRoot;
-    }
+    const shadowRoot = containerRef.current.attachShadow({ mode: 'open' });
 
-    // Criar container para o widget dentro do Shadow DOM
-    const widgetContainer = document.createElement('div');
-    widgetContainer.id = 'wrapper';
-    widgetContainer.className = '[&_*]:!text-inherit';
-    
-    // Adicionar CSS isolado ao Shadow DOM
+    // Estilo para resetar e isolar
     const style = document.createElement('style');
     style.textContent = `
       :host {
@@ -39,37 +29,45 @@ const TravelWidget = () => {
         display: block;
       }
       
-      #wrapper {
+      :host * {
         all: revert;
       }
+      
+      #wrapper {
+        display: block;
+      }
     `;
-    
-    shadowRef.current.appendChild(style);
-    shadowRef.current.appendChild(widgetContainer);
+    shadowRoot.appendChild(style);
 
-    // Criar elemento befly-widget dentro do Shadow DOM
-    const berflyWidget = document.createElement('befly-widget');
-    berflyWidget.setAttribute('language', 'pt-br');
-    berflyWidget.setAttribute('new-tab', 'true');
-    widgetContainer.appendChild(berflyWidget);
+    // Criar container para o widget
+    const wrapper = document.createElement('div');
+    wrapper.id = 'wrapper';
+    shadowRoot.appendChild(wrapper);
 
-    // Carregar CSS do widget no Shadow DOM
+    // Carregar CSS APENAS no Shadow DOM
     const link = document.createElement('link');
     link.rel = 'stylesheet';
     link.href = 'https://static.onertravel.com/widget/search/production/styles.css';
-    shadowRef.current.insertBefore(link, shadowRef.current.firstChild);
+    shadowRoot.insertBefore(link, shadowRoot.firstChild);
 
-    // Carregar script do widget
+    // Carregar script DENTRO do Shadow DOM (não no document.body)
     const script = document.createElement('script');
     script.src = 'https://static.onertravel.com/widget/search/production/widget-befly.js';
     script.type = 'text/javascript';
     script.async = true;
-    document.body.appendChild(script);
+    
+    script.onload = () => {
+      // Criar o widget APÓS o script carregar
+      const berflyWidget = document.createElement('befly-widget');
+      berflyWidget.setAttribute('language', 'pt-br');
+      berflyWidget.setAttribute('new-tab', 'true');
+      wrapper.appendChild(berflyWidget);
+    };
+
+    shadowRoot.appendChild(script);
 
     return () => {
-      if (document.body.contains(script)) {
-        document.body.removeChild(script);
-      }
+      // Cleanup é automático quando o componente desmonta
     };
   }, []);
 
