@@ -18,56 +18,55 @@ const TravelWidget = () => {
   useEffect(() => {
     if (!containerRef.current) return;
 
-    // Criar Shadow DOM
-    const shadowRoot = containerRef.current.attachShadow({ mode: 'open' });
-
-    // Estilo para resetar e isolar
-    const style = document.createElement('style');
-    style.textContent = `
-      :host {
-        all: initial;
-        display: block;
-      }
-      
-      :host * {
-        all: revert;
-      }
-      
-      #wrapper {
-        display: block;
-      }
-    `;
-    shadowRoot.appendChild(style);
-
-    // Criar container para o widget
-    const wrapper = document.createElement('div');
-    wrapper.id = 'wrapper';
-    shadowRoot.appendChild(wrapper);
-
-    // Carregar CSS APENAS no Shadow DOM
-    const link = document.createElement('link');
-    link.rel = 'stylesheet';
-    link.href = 'https://static.onertravel.com/widget/search/production/styles.css';
-    shadowRoot.insertBefore(link, shadowRoot.firstChild);
-
-    // Carregar script DENTRO do Shadow DOM (não no document.body)
-    const script = document.createElement('script');
-    script.src = 'https://static.onertravel.com/widget/search/production/widget-befly.js';
-    script.type = 'text/javascript';
-    script.async = true;
+    // Criar um iframe para isolar completamente o widget
+    const iframe = document.createElement('iframe');
+    iframe.style.border = 'none';
+    iframe.style.width = '100%';
+    iframe.style.height = 'auto';
+    iframe.style.minHeight = '500px';
     
-    script.onload = () => {
-      // Criar o widget APÓS o script carregar
-      const berflyWidget = document.createElement('befly-widget');
-      berflyWidget.setAttribute('language', 'pt-br');
-      berflyWidget.setAttribute('new-tab', 'true');
-      wrapper.appendChild(berflyWidget);
-    };
+    containerRef.current.appendChild(iframe);
 
-    shadowRoot.appendChild(script);
+    const iframeDoc = iframe.contentDocument || iframe.contentWindow?.document;
+    if (!iframeDoc) return;
+
+    // Escrever HTML no iframe
+    iframeDoc.open();
+    iframeDoc.write(`
+      <!DOCTYPE html>
+      <html lang="pt-BR">
+      <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://static.onertravel.com/widget/search/production/styles.css">
+        <style>
+          * {
+            margin: 0;
+            padding: 0;
+          }
+          body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+          }
+        </style>
+      </head>
+      <body>
+        <div id="wrapper"></div>
+        <script src="https://static.onertravel.com/widget/search/production/widget-befly.js"><\/script>
+        <script>
+          const widget = document.createElement('befly-widget');
+          widget.setAttribute('language', 'pt-br');
+          widget.setAttribute('new-tab', 'true');
+          document.getElementById('wrapper').appendChild(widget);
+        <\/script>
+      </body>
+      </html>
+    `);
+    iframeDoc.close();
 
     return () => {
-      // Cleanup é automático quando o componente desmonta
+      if (containerRef.current?.contains(iframe)) {
+        containerRef.current.removeChild(iframe);
+      }
     };
   }, []);
 
@@ -84,7 +83,7 @@ const TravelWidget = () => {
         </div>
 
         <div className="max-w-5xl mx-auto bg-card rounded-lg shadow-lg p-8 animate-fade-in">
-          <div ref={containerRef} className="widget-shadow-container" />
+          <div ref={containerRef} className="widget-container" />
         </div>
       </div>
     </section>
