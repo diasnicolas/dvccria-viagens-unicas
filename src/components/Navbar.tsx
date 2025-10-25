@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { Menu, X, Phone, Mail } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useIrParaWhatsApp } from "@/hooks/useIrParaWhatsApp";
+import logotipo from "@/assets/logo_topo.png";
 
 
 const Navbar = () => {
@@ -35,12 +36,15 @@ const irParaWhatsApp = useIrParaWhatsApp();
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-20">
           <div className="flex items-center space-x-2">
-            <div className="text-2xl font-playfair font-bold bg-gradient-to-r from-primary to-primary bg-clip-text text-transparent">
+           {/*  <div className="text-2xl font-playfair font-bold bg-gradient-to-r from-primary to-primary bg-clip-text text-transparent">
               DV&C
-            </div>
-            <div className="hidden sm:block text-sm font-poppins text-muted-foreground">
-              Turismo e Viagens
-            </div>
+            </div> */}
+              <img
+              src={logotipo}
+              alt="Logotipo DV&C"
+              className="h-72 w-auto object-contain"
+            />
+           
           </div>
 
           <div className="hidden md:flex items-center space-x-8">
